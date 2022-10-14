@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} main {% endblock%}
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reestablish</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in deleted_todo %}
+        <tr>
+            <th>{{i.id}}</th>
+            <td>{{i.deleted_title}}</td>
+            <td>{{i.deleted_description}}</td>
+            <td>{{i.deleted_sent_at}}</td>
+            <td><a href="reestablish/{{i.id}}"><i class="fa-solid fa-trash-arrow-up"></i></a></td>
+            <td><a href="delete1/{{i.id}}"><i class="fa-solid fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock%}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %} main {% endblock%}
+{% block content %}
+
+<form action="create/" method="POST">
+    {% csrf_token %}
+    <div class="mb-3 mt-5">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Название">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Описание</label>
+        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" type="submit">Button</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col">Elected</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in todo %}
+        <tr>
+            <th>{{i.id}}</th>
+            <td>{{i.title}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.sent_at}}</td>
+            <td><a href="elected_letter/{{i.id}}"><i class="fa-regular fa-heart"></i></i></a></td>
+            <td><a href="edit/{{i.id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+            <td><a href="delete/{{i.id}}"><i class="fa-solid fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock%}
